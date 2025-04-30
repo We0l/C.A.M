@@ -1,0 +1,148 @@
+body, #play-area {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+}
+
+header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#result-container {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  border: none;
+  opacity: 0.72;
+  text-shadow: 1px 1px 2px black, 0 0 25px rgb(175, 175, 175), 0 0 5px rgb(255, 255, 255);
+  box-shadow: 0 0 5px #a6a2db, 0 0 15px #e9e7ff;
+  font-size: 1.5rem;
+  min-width: 250px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+#result {
+  font-weight: bold;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#roll-button {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: #a6a2db;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+#roll-button:active {
+  transform: scale(0.95);
+}
+
+footer {
+  padding: 0.5rem 1rem;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
+
+body > footer {
+  background-color: #e9e7ff;
+  opacity: 0.9;
+}
+
+#encyclopedia summary {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.encyclopedia-content {
+  margin-top: 0.5rem;
+}
+#rolled-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-left: 1.2rem;
+}
+#tiers-info {
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+#tiers-info li {
+  margin-bottom: 0.3rem;
+}
+
+footer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  padding: 1rem;
+  z-index: 10;
+}
+
+header, main {
+  margin-right: 30%;
+}
+
+#encyclopedia {
+  width: 100%;
+}
+
+#roll-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cooldown-timer {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+
+#play-area {
+  background-image: url('background3.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.gradient-mythic {
+  background: linear-gradient(90deg,
+    #E30B0B,
+    #0556ec,
+    #ea0ef2,
+    #E30B0B,
+    #0556ec,
+    #ea0ef2
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.gradient-mythic::marker {
+  color: #E30B0B;
+}
+
+#camdanatan {
+  color: white;
+  margin-top: 2%;
+  margin-left: 2%;
+  font-size: bold;
+}
