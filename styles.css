@@ -57,8 +57,9 @@ footer {
 }
 
 body > footer {
-  background-color: #e9e7ff;
+  background-color: #222222;
   opacity: 0.9;
+  color: white;
 }
 
 #encyclopedia summary {
@@ -123,6 +124,25 @@ header, main {
   min-height: 100vh;
 }
 
+@keyframes mythicBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.mythic-container {
+  background: linear-gradient(90deg,
+    #E30B0B,
+    #0556ec,
+    #ea0ef2,
+    #E30B0B,
+    #0556ec,
+    #ea0ef2
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: mythicBackground 3s ease infinite !important;
+}
+
 .gradient-mythic {
   background: linear-gradient(90deg,
     #E30B0B,
@@ -140,9 +160,162 @@ header, main {
   color: #E30B0B;
 }
 
+.divine-container {
+  background: linear-gradient(90deg,
+    #ffbede, #ff1493, #ffbede,
+    #ff1493, #ffbede, #ff1493
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: mythicBackground 3s ease infinite !important;
+}
+
+.gradient-divine {
+  background: linear-gradient(90deg,
+    #ffbede, #ff1493, #ffbede,
+    #ff1493, #ffbede, #ff1493
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.gradient-divine::marker {
+  color: #ff69b4;
+}
+
 #camdanatan {
   color: white;
   margin-top: 2%;
   margin-left: 2%;
   font-size: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#camdanatan .separator {
+  opacity: 0.7;
+}
+
+#camdanatan .github-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+#camdanatan .github-link:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+#camdanatan a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#camdanatan a:hover {
+  text-decoration: none;
+}
+
+@keyframes shine {
+  0% { color: #ffef0c; }
+  33% { color: #ffffff; }
+  66% { color: #2b2b2b; }
+  100% { color: #ffef0c; }
+}
+
+.shiny-text {
+  animation: shine 3s linear infinite;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5); /* Add shadow for better visibility */
+}
+
+#rollfont {
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: 0 0 3px rgb(255, 16, 16); /* Add shadow for better visibility */
+}
+
+#mute-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  font-size: 10px;
+}
+
+#bg-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 70px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  font-size: 10px;
+}
+
+.no-background {
+  background-image: none !important;
+  background-color: #1a1a1a !important;
+}
+
+#info-button {
+  position: fixed;
+  right: 27%;
+  bottom: 20px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #222222;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  color: white;
+  max-width: 400px;
+  opacity: 0.9;
+}
+
+.popup-content {
+  text-align: left;
+}
+
+.popup-content h3 {
+  margin-top: 0;
+}
+
+.popup-content ul {
+  padding-left: 20px;
+}
+
+#close-popup {
+  margin-top: 15px;
+  padding: 5px 15px;
+  background: #a6a2db;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+#close-popup:hover {
+  opacity: 0.9;
 }

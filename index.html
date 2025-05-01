@@ -9,7 +9,9 @@
 
   <div id="play-area">
     <div id="camdanatan">
-      <h31>v0.1</h31>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><h31>v0.2</h31></a>
+      <span class="separator">/</span>
+      <a href="https://github.com/We0l/C.A.M" target="_blank" class="github-link">GitHub</a>
     </div>
     <header>
       <div id="result-container">
@@ -30,6 +32,7 @@
     <details id="encyclopedia">
       <summary>Camsiklopedia</summary>
       <div class="encyclopedia-content">
+        <h3 id="rollfont">Total Rolls: <span id="total-rolls">0</span></h3>
         <h3>History</h3>
         <ul id="rolled-list">
         </ul>
@@ -40,19 +43,46 @@
           <li><strong>Epic</strong>: 5%</li>
           <li><strong>Legendary</strong>: 0.9%</li>
           <li><strong>Mythic</strong>: 0.1%</li>
+          <li><strong>Divine</strong>: 0.???%</li>
         </ul>
       </div>
     </details>
   </footer>
 
   <section class="cam-lists" hidden>
-    <p id="common_cam">White Cam<br>Black Cam<br>Red Cam<br>Green Cam<br>Blue Cam<br>Purple Cam<br>Yellow Cam<br>Orange Cam<br>Brown Cam<br>Grey Cam<br>Pink Cam</p>
-    <p id="rare_cam">Icy Cam<br>Reflective Cam<br>Laminated Cam<br>Double Glazed Cam<br>Tempered Cam<br>Wired Cam<br>Crystal Cam<br>E-rank Cam<br>D-rank Cam<br>Cam Gear 2</p>
+    <p id="common_cam">White Cam<br>Black Cam<br>Red Cam<br>Green Cam<br>Blue Cam<br>Purple Cam<br>Yellow Cam<br>Orange Cam<br>Brown Cam<br>Grey Cam<br>Pink Cam<br>Clear Cam<br>Frosted Cam<br>Smoky Cam<br>Matte Cam<br>Sanded Cam<br>Bronze Cam<br>Teal Cam<br>Lime Cam<br>Beige Cam<br>Indigo Cam<br>Olive Cam<br>Navy Cam<br>Amber Cam<br>Coral Cam<br>Cyan Cam<br>Sepia Cam<br>Dull Cam<br>Pale Cam<br>Chalk Cam<br>Sky Cam<br></p>
+    <p id="rare_cam">Icy Cam<br>Reflective Cam<br>Laminated Cam<br>Double Glazed Cam<br>Tempered Cam<br>Wired Cam<br>Crystal Cam<br>E-rank Cam<br>D-rank Cam<br>Cam Gear 2<br>Tinted Cam<br>Prismatic Cam<br>Glacial Cam<br>Anti-Glare Cam<br>Polarized Cam<br>Satin Cam<br>Obsidian Cam<br>Blurred Cam<br>Reinforced Cam<br>Varnished Cam<br>Bubbled Cam<br>Neon Cam<br>Flare Cam<br>Misty Cam<br>Shimmer Cam<br>Soft-Light Cam<br>Static Cam<br>Chrome Cam<br>Carbon Cam<br>Cam Gear 1.5<br></p>      
     <p id="epic_cam">Enamelled Cam<br>Rainbow Cam<br>Low-E Cam<br>Mirrored Cam<br>Polycarbonate Cam<br>Galactic Cam<br>SSJ Cam<br>Cam Gear 3<br>C-rank Cam</p>
     <p id="legendary_cam">Suscan<br>Camdancan<br>Edged Cam<br>Ultra Instinct Cam<br>Gold Cam Requiem<br>Cam Over Heaven<br>Cam Gear 4<br>B-rank Cam<br>A-rank Cam<br>S-rank Cam</p>
-    <p id="mythic_cam">Cam Gear 5<br>National Cam<br>The Honered Cam<br>Low Tier Cam<br>IShowCam</p>
+    <p id="mythic_cam">Cam Gear 5<br>National Cam<br>The Honered Cam<br>IShowCam</p>
+    <p id="divine_cam">💨 Osurcam 💨<br>⚫ Void Cam ⚫<br>🪽 Celestial Cam 🪽<br>⚡ Low Tier Cam ⚡</p>
     <p id="secret_cam">💀 🔥Efenin Cam🗣️ 🙏</p>
   </section>
+
+  <audio id="glass-break" src="resources/glass-breaks.mp3" preload="auto"></audio>
+  <audio id="perfect-fart" src="resources/perfect-fart.mp3" preload="auto"></audio>
+  <audio id="legendary-sound" src="resources/legendary-roll-sound.mp3" preload="auto"></audio>
+  <audio id="divine-sound" src="resources/divine-roll-sound.mp3" preload="auto"></audio>
+  <audio id="mythic-sound" src="resources/mythic-roll-sound.mp3" preload="auto"></audio>
+
+  <button id="mute-button">Mute</button>
+  <button id="bg-toggle">BG</button>
+  <button id="info-button">?</button>
+
+  <div id="info-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <h3>Cooldown Reduction System</h3>
+      <p>Roll cooldown starts at 10 seconds and can be reduced by collecting different tiers:</p>
+      <ul>
+        <li>10 Commons: 8s cooldown</li>
+        <li>10 Rares: 6s cooldown</li>
+        <li>10 Epics: 4s cooldown</li>
+        <li>10 Legendaries: 2s cooldown</li>
+        <li>10 Mythics: 1s cooldown</li>
+      </ul>
+      <button id="close-popup">Close</button>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
