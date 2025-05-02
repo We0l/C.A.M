@@ -16,12 +16,11 @@ const tiers = {
   secret:    getCams('secret_cam'),
 };
 
-// Update camToTier initialization to include shiny variants
 const camToTier = {};
 Object.entries(tiers).forEach(([tier, cams]) => {
   cams.forEach(cam => { 
     camToTier[cam] = tier;
-    camToTier[`Shiny ${cam}`] = tier; // Add shiny variant
+    camToTier[`Shiny ${cam}`] = tier;
   });
 });
 
@@ -83,7 +82,6 @@ try {
 }
 
 function getCurrentCooldown() {
-  // Count total non-shiny cams per tier
   const tierCounts = {};
   Object.entries(rollCounts).forEach(([cam, count]) => {
     if (!cam.startsWith('Shiny ')) {
@@ -105,7 +103,6 @@ const gradientClass = 'gradient-mythic';
 function renderEncyclopedia(rolledList) {
   rolledList.innerHTML = '';
   
-  // Calculate and display total rolls
   const totalRolls = Object.values(rollCounts).reduce((sum, count) => sum + count, 0);
   document.getElementById('total-rolls').textContent = totalRolls;
   
@@ -114,7 +111,6 @@ function renderEncyclopedia(rolledList) {
     const camsInTier = Object.entries(rollCounts)
       .filter(([cam, count]) => camToTier[cam] === tier)
       .sort((a, b) => {
-        // Sort shinies after their normal variants
         const aShiny = a[0].startsWith('Shiny ');
         const bShiny = b[0].startsWith('Shiny ');
         if (aShiny !== bShiny) return aShiny ? 1 : -1;
@@ -145,7 +141,6 @@ function renderEncyclopedia(rolledList) {
       } else {
         const color = tierColors[tier];
         if (isShiny) {
-          // Make shiny variants brighter by increasing the color's luminosity
           li.style.color = color;
           li.style.textShadow = `0 0 10px ${color}`;
           li.style.filter = 'brightness(1.5)';
@@ -201,14 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function playRollSound(tier) {
     if (isMuted) return;
 
-    // Get all sound elements
     const glassBreak = document.getElementById('glass-break');
     const perfectFart = document.getElementById('perfect-fart');
     const legendarySound = document.getElementById('legendary-sound');
     const divineSound = document.getElementById('divine-sound');
     const mythicSound = document.getElementById('mythic-sound');
 
-    // Play tier-specific sounds
     if (tier === 'mythic') {
       mythicSound.currentTime = 0;
       mythicSound.play();
@@ -219,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
       legendarySound.currentTime = 0;
       legendarySound.play();
     } else {
-      // Normal sound logic for other tiers
       const random = Math.random();
       if (random < 0.995) {
         glassBreak.currentTime = 0;
@@ -269,11 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isCooldown) return;
 
     const { cam, tier, isShiny } = rollCam();
-    playRollSound(tier);  // Pass the tier to playRollSound
+    playRollSound(tier);
 
     resultEl.textContent = cam;
     
-    // Handle mythic and divine gradient background
     container.classList.remove('mythic-container', 'divine-container');
     if (tier === 'mythic') {
       container.classList.add('mythic-container');
