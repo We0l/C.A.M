@@ -42,12 +42,35 @@ main {
   font-size: 1.25rem;
   border: none;
   border-radius: 1.5rem;
-  background-color: #a6a2db;
+  background: url(resources/roll-button3.gif) no-repeat center center;
+  box-shadow: 0 0 3px #a6a2db, 0 0 9px #e9e7ff;
   color: white;
   cursor: pointer;
   transition: transform 0.1s ease;
+  order: 1;
 }
 #roll-button:active {
+  transform: scale(0.95);
+}
+
+#mindsets-button {
+  margin-top: 50px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background: linear-gradient(45deg, #1522d9, #3073e5);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  order: 3;
+}
+
+#mindsets-button:hover {
+  transform: scale(1.05);
+}
+
+#mindsets-button:active {
   transform: scale(0.95);
 }
 
@@ -114,6 +137,7 @@ header, main {
   font-size: 0.8rem;
   color: #555;
   margin-top: 0.25rem;
+  order: 2;
 }
 
 #play-area {
@@ -190,6 +214,14 @@ header, main {
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 73%;
+  justify-content: space-between;
+}
+
+.version-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #camdanatan .separator {
@@ -224,13 +256,21 @@ header, main {
 
 .shiny-text {
   animation: shine 3s linear infinite;
-  text-shadow: 0 0 3px rgba(0,0,0,0.5); /* Add shadow for better visibility */
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
 #rollfont {
   font-size: 1rem;
   font-weight: bold;
-  text-shadow: 0 0 3px rgb(255, 16, 16); /* Add shadow for better visibility */
+  text-shadow: 0 0 3px rgb(255, 16, 16);
+}
+
+#coincounter {
+  color: #ffffff;
+  font-size: 1.0rem;
+  margin: 0;
+  padding: 0;
+  margin-right: 20px;
 }
 
 #mute-button {
@@ -280,6 +320,16 @@ header, main {
   font-size: 16px;
 }
 
+#afk-button {
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 16px;
+  background: linear-gradient(45deg, #ed8383, #939393);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
 .popup {
   position: fixed;
   left: 50%;
@@ -318,4 +368,176 @@ header, main {
 
 #close-popup:hover {
   opacity: 0.9;
+}
+
+#mindsets-popup {
+  position: fixed;
+  top: 50%;
+  left: calc((100% - 25%) / 2);
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  max-width: 400px;
+}
+
+.mindset-button,
+#close-mindsets {
+  margin-top: 3px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #a6a2db;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.mindset-button:hover,
+#close-mindsets:hover {
+  background-color: #cac8e9;
+}
+
+.mindset-button:disabled,
+.mindset-button.disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.encyclopedia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cam-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.sell-options {
+  display: none;
+  position: absolute;
+  left: -20px;
+  top: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  border: none;
+  border-radius: 10px;
+  padding: 4px;
+  z-index: 100;
+  min-width: 180px;
+}
+
+.sell-options.active {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sell-button {
+  white-space: nowrap;
+  padding: 4px 8px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0.6;
+  border: 1px solid rgb(255, 255, 255);
+  color: white;
+  border-radius: 4px;
+}
+
+.sell-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+    z-index: 100;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  header, main {
+    margin-right: 0;
+    margin-bottom: 40px;
+  }
+
+  #result-container {
+    width: 80%;
+    min-width: auto;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  #roll-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  #mindsets-button {
+    margin-top: 30px;
+    font-size: 0.8rem;
+  }
+
+  #info-button {
+    right: 20px;
+    bottom: calc(40vh + 20px);
+  }
+
+  #mute-button, #bg-toggle {
+    bottom: calc(40vh + 20px);
+  }
+
+  #camdanatan {
+    width: 90%;
+    margin: 10px auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .popup {
+    width: 90%;
+    max-width: none;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #mindsets-popup {
+    left: 50%;
+    width: 90%;
+  }
+
+  #encyclopedia {
+    max-height: 35vh;
+    overflow-y: auto;
+    width: auto;
+    margin: 0;
+    padding: 0 0.5rem;
+  }
+
+  #rolled-list {
+    max-height: 25vh;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .sell-options {
+    left: 50%;
+    right: auto;
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }

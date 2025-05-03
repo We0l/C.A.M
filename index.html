@@ -6,12 +6,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <div id="play-area">
     <div id="camdanatan">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><h31>v0.2</h31></a>
-      <span class="separator">/</span>
-      <a href="https://github.com/We0l/C.A.M" target="_blank" class="github-link">GitHub</a>
+      <div class="version-group">
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><h31>v0.3</h31></a>
+        <span class="separator">/</span>
+        <a href="https://github.com/We0l/C.A.M" target="_blank" class="github-link">GitHub</a>
+      </div>
+      <h3 id="coincounter">🪟 <span id="camcoin-balance">0</span></h3>
     </div>
     <header>
       <div id="result-container">
@@ -21,19 +23,57 @@
 
     <main>
       <div id="roll-area">
-        <button id="roll-button">Roll</button>
+        <button id="roll-button">Break</button>
+        <button id="mindsets-button">Mindsets</button>
         <div id="cooldown-timer" class="cooldown"></div>
       </div>
-    </main>  
+    </main>
+
+    <div id="mindsets-popup" class="popup" style="display:none">
+      <div class="popup-content">
+        <h3>Mindsets</h3>
+        <div class="mindsets-container">
+          <div class="mindsets-list">
+            <div class="mindset-item">
+              <h4>Beta Mindset</h4>
+              <p>Cost: 10 Epic Cams (non‑shiny) + 1000 🪟</p>
+              <button class="mindset-button" data-mindset="beta">Purchase</button>
+            </div>
+            <div class="mindset-item">
+              <h4>Alpha Mindset</h4>
+              <p>Cost: 10 Legendary Cams (non‑shiny) + 7000 🪟</p>
+              <button class="mindset-button" data-mindset="alpha">Purchase</button>
+            </div>
+            <div class="mindset-item">
+              <h4>Sigma Mindset</h4>
+              <p>Cost: 10 Mythic Cams (non‑shiny) + 80000 🪟</p>
+              <button class="mindset-button" data-mindset="sigma">Purchase</button>
+            </div>
+            <div class="mindset-item">
+              <h4>Gooner Mindset</h4>
+              <p>Cost: 2 Divine Cams (non‑shiny)</p>
+              <button class="mindset-button" data-mindset="autoroll">Purchase</button>
+            </div>
+          </div>
+          <div class="mindsets-info">
+            <h4>Information</h4>
+            <div id="mindset-description">
+              Choose mindset. Gooner mindset autorolls with default chances, <b><i>"sigma > alpha > beta."</i></b>
+            </div>
+          </div>
+        </div>
+        <button id="close-mindsets">Close</button>
+      </div>
+    </div>
 
   </div>
 
   <footer>
-    <details id="encyclopedia">
+  <details id="encyclopedia">
       <summary>Camsiklopedia</summary>
       <div class="encyclopedia-content">
         <h3 id="rollfont">Total Rolls: <span id="total-rolls">0</span></h3>
-        <h3>History</h3>
+        <h3>Cams</h3>
         <ul id="rolled-list">
         </ul>
         <h3>Chances</h3>
@@ -56,7 +96,7 @@
     <p id="legendary_cam">Suscan<br>Camdancan<br>Edged Cam<br>Ultra Instinct Cam<br>Gold Cam Requiem<br>Cam Over Heaven<br>Cam Gear 4<br>B-rank Cam<br>A-rank Cam<br>S-rank Cam</p>
     <p id="mythic_cam">Cam Gear 5<br>National Cam<br>The Honered Cam<br>IShowCam</p>
     <p id="divine_cam">💨 Osurcam 💨<br>⚫ Void Cam ⚫<br>🪽 Celestial Cam 🪽<br>⚡ Low Tier Cam ⚡</p>
-    <p id="secret_cam">💀 🔥Efenin Cam🗣️ 🙏</p>
+    <p id="secret_cam">💀 🔥Efenin Cam🗣️ 🙏<br>T̵̪̚h̷̯̿o̵̲͑ś̸̺e̴̺̽ ̵̣̽Ẉ̸̑ȟ̴̜o̵̜̾ ̴̹̅K̷̥̏n̷̞͒o̸̢̾w̸̜͗</p>
   </section>
 
   <audio id="glass-break" src="resources/glass-breaks.mp3" preload="auto"></audio>
@@ -64,6 +104,7 @@
   <audio id="legendary-sound" src="resources/legendary-roll-sound.mp3" preload="auto"></audio>
   <audio id="divine-sound" src="resources/divine-roll-sound.mp3" preload="auto"></audio>
   <audio id="mythic-sound" src="resources/mythic-roll-sound.mp3" preload="auto"></audio>
+  <audio id="secret-sound" src="resources/secret-roll-sound.mp3" preload="auto"></audio>
 
   <button id="mute-button">Mute</button>
   <button id="bg-toggle">BG</button>
@@ -74,11 +115,11 @@
       <h3>Cooldown Reduction System</h3>
       <p>Roll cooldown starts at 10 seconds and can be reduced by collecting different tiers:</p>
       <ul>
-        <li>10 Commons: 8s cooldown</li>
-        <li>10 Rares: 6s cooldown</li>
-        <li>10 Epics: 4s cooldown</li>
-        <li>10 Legendaries: 2s cooldown</li>
-        <li>10 Mythics: 1s cooldown</li>
+        <li>10 Commons: 5s cooldown</li>
+        <li>10 Rares: 3.5s cooldown</li>
+        <li>10 Epics: 2s cooldown</li>
+        <li>10 Legendaries: 1s cooldown</li>
+        <li>10 Mythics: 0.75s cooldown</li>
       </ul>
       <button id="close-popup">Close</button>
     </div>
