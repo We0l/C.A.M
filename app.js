@@ -336,20 +336,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const purchaseFailSound = new Audio("resources/purchasefail.mp3");
 
   muteButton.addEventListener('click', () => {
-    buttonClickSound.play();
     isMuted = !isMuted;
     muteButton.textContent = isMuted ? 'Unmute' : 'Mute';
+
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.muted = isMuted;
+    });
+
+    if (!isMuted) buttonClickSound.play();
   });
 
   bgToggle.addEventListener('click', () => {
-    buttonClickSound.play();
+    if (!isMuted) buttonClickSound.play();
     isBgEnabled = !isBgEnabled;
     playArea.classList.toggle('no-background');
     bgToggle.textContent = isBgEnabled ? 'BG' : 'No BG';
   });
 
   infoButton.addEventListener('click', () => {
-    buttonClickSound.play();
+    if (!isMuted) buttonClickSound.play();
     popup.style.display = 'block';
   });
 
@@ -364,12 +369,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   mindsetsButton.addEventListener('click', () => {
-    buttonClickSound.play();
+    if (!isMuted) buttonClickSound.play();
     mindsetsPopup.style.display = 'block';
   });
   
   closeMindsetsBtn.addEventListener('click', () => {
-    buttonClickSound.play();
+    if (!isMuted) buttonClickSound.play();
     mindsetsPopup.style.display = 'none';
   });
   
@@ -395,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   mindsetButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      buttonClickSound.play();
+      if (!isMuted) buttonClickSound.play();
       const mindset = btn.dataset.mindset;
       if (purchasedMindsets[mindset]) {
         if (currentMindset === mindset) {
@@ -431,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       if (available < req.requiredCount || camcoinBalance < req.coinCost) {
-        purchaseFailSound.play();
+        if (!isMuted) purchaseFailSound.play();
         return;
       }
       let remaining = req.requiredCount;
@@ -457,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       mindsetsPopup.style.display = 'none';
       renderEncyclopedia(document.getElementById('rolled-list'));
-      purchaseSound.play();
+      if (!isMuted) purchaseSound.play();
       if (mindset === 'autoroll') scheduleAutoroll();
     });
   });
@@ -480,26 +485,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (tier === 'mythic') {
       mythicSound.currentTime = 0;
-      mythicSound.play();
+      if (!isMuted) mythicSound.play();
     } else if (tier === 'divine') {
       divineSound.currentTime = 0;
-      divineSound.play();
+      if (!isMuted) divineSound.play();
     } else if (tier === 'legendary') {
       legendarySound.currentTime = 0;
-      legendarySound.play();
+      if (!isMuted) legendarySound.play();
     } else if (tier === 'secret') {
       if (secretSound) {
         secretSound.currentTime = 0;
-        secretSound.play();
+        if (!isMuted) secretSound.play();
       }
     } else {
       const random = Math.random();
       if (random < 0.995) {
         glassBreak.currentTime = 0;
-        glassBreak.play();
+        if (!isMuted) glassBreak.play();
       } else {
         perfectFart.currentTime = 0;
-        perfectFart.play();
+        if (!isMuted) perfectFart.play();
       }
     }
   }
