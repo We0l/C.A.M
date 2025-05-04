@@ -245,46 +245,48 @@ function renderEncyclopedia(rolledList) {
       camText.textContent = `${cam} (${displayTier}): x${count}`;
       li.appendChild(camText);
 
-      const sellOptionsContainer = document.createElement('div');
-      sellOptionsContainer.className = 'sell-options';
-      
-      const amounts = [1, 10, 100];
-      amounts.forEach(amt => {
-        if (count >= amt) {
-          const btn = document.createElement('button');
-          btn.className = 'sell-button';
-          const coinValue = coinValues[tier] * amt;
-          btn.textContent = `Sell ${amt} for ${coinValue.toLocaleString()} 🪟`;
-          btn.onclick = (e) => {
-            e.stopPropagation();
-            sellCam(cam, amt);
-          };
-          sellOptionsContainer.appendChild(btn);
-        }
-      });
-
-      const sellAllBtn = document.createElement('button');
-      sellAllBtn.className = 'sell-button';
-      const totalValue = coinValues[tier] * count;
-      sellAllBtn.textContent = `Sell All (${count}) for ${totalValue.toLocaleString()} 🪟`;
-      sellAllBtn.onclick = (e) => {
-        e.stopPropagation();
-        sellCam(cam, count);
-      };
-      sellOptionsContainer.appendChild(sellAllBtn);
-      
-      li.onclick = (e) => {
-        document.querySelectorAll('.sell-options.active').forEach(el => {
-          if (el !== sellOptionsContainer) {
-            el.classList.remove('active');
+      const isShiny = cam.startsWith('Shiny ');
+      if (!isShiny) {
+        const sellOptionsContainer = document.createElement('div');
+        sellOptionsContainer.className = 'sell-options';
+        
+        const amounts = [1, 10, 100];
+        amounts.forEach(amt => {
+          if (count >= amt) {
+            const btn = document.createElement('button');
+            btn.className = 'sell-button';
+            const coinValue = coinValues[tier] * amt;
+            btn.textContent = `Sell ${amt} for ${coinValue.toLocaleString()} 🪟`;
+            btn.onclick = (e) => {
+              e.stopPropagation();
+              sellCam(cam, amt);
+            };
+            sellOptionsContainer.appendChild(btn);
           }
         });
-        sellOptionsContainer.classList.toggle('active');
-      };
 
-      li.appendChild(sellOptionsContainer);
+        const sellAllBtn = document.createElement('button');
+        sellAllBtn.className = 'sell-button';
+        const totalValue = coinValues[tier] * count;
+        sellAllBtn.textContent = `Sell All (${count}) for ${totalValue.toLocaleString()} 🪟`;
+        sellAllBtn.onclick = (e) => {
+          e.stopPropagation();
+          sellCam(cam, count);
+        };
+        sellOptionsContainer.appendChild(sellAllBtn);
+        
+        li.onclick = (e) => {
+          document.querySelectorAll('.sell-options.active').forEach(el => {
+            if (el !== sellOptionsContainer) {
+              el.classList.remove('active');
+            }
+          });
+          sellOptionsContainer.classList.toggle('active');
+        };
 
-      const isShiny = cam.startsWith('Shiny ');
+        li.appendChild(sellOptionsContainer);
+      }
+
       if (tier === 'mythic') {
         li.classList.add(gradientClass);
       } else if (tier === 'divine') {
@@ -359,6 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   closePopup.addEventListener('click', () => {
+    if (!isMuted) buttonClickSound.play();
     popup.style.display = 'none';
   });
 
@@ -398,6 +401,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, cooldown + 10);
   }
 
+  const mindsetStyles = {
+    beta: '0 0 12px rgb(159, 41, 255)',
+    alpha: '0 0 12px rgb(255, 243, 21)',
+    sigma: '0 0 12px rgb(255, 0, 0)',
+    autoroll: '0 0 12px rgb(255, 44, 220)'
+  };
+
+  const defaultButtonShadow = '0 0 3px #a6a2db, 0 0 9px #e9e7ff';
+
   mindsetButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       if (!isMuted) buttonClickSound.play();
@@ -407,6 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
           currentMindset = null;
           mindsetCooldownBonus = 0;
           btn.textContent = 'Purchased';
+          rollButton.style.boxShadow = defaultButtonShadow;
           mindsetButtons.forEach(b => {
             if (purchasedMindsets[b.dataset.mindset] && b.dataset.mindset !== mindset) {
               b.textContent = 'Purchased';
@@ -416,6 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           currentMindset = mindset;
           mindsetCooldownBonus = mindsetData[mindset].cooldownBonus;
+          rollButton.style.boxShadow = mindsetStyles[mindset];
           mindsetButtons.forEach(b => {
             b.textContent = (b.dataset.mindset === mindset) ? 'Active' : (purchasedMindsets[b.dataset.mindset] ? 'Purchased' : 'Purchase');
           });
@@ -457,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('purchasedMindsets', JSON.stringify(purchasedMindsets));
       currentMindset = mindset;
       mindsetCooldownBonus = req.cooldownBonus;
+      rollButton.style.boxShadow = mindsetStyles[mindset];
       mindsetButtons.forEach(b => {
         b.textContent = (b.dataset.mindset === mindset) ? 'Active' : (purchasedMindsets[b.dataset.mindset] ? 'Purchased' : 'Purchase');
       });
@@ -579,6 +594,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function spawnAntiAfkButton() {
+    if (document.getElementById('afk-overlay')) return;
+ 
     const overlay = document.createElement('div');
     overlay.id = 'afk-overlay';
     overlay.style.position = 'fixed';
