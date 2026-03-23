@@ -4,7 +4,7 @@ body, #play-area {
   flex-direction: column;
   height: 100vh;
   font-family: 'Segoe UI', sans-serif;
-  background: #f5f5f5;
+  background: #1a1a1a;
 }
 
 header {
@@ -18,16 +18,31 @@ header {
   padding: 1rem 2rem;
   border-radius: 0.75rem;
   border: none;
-  opacity: 0.72;
-  text-shadow: 1px 1px 2px black, 0 0 25px rgb(175, 175, 175), 0 0 5px rgb(255, 255, 255);
-  box-shadow: 0 0 5px #a6a2db, 0 0 15px #e9e7ff;
+  opacity: 1;
   font-size: 1.5rem;
   min-width: 250px;
   text-align: center;
   transition: background-color 0.3s ease;
 }
 
+#result-container-bg {
+  background-image: url(resources/cambreakbg.png);
+  background-size: cover;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  opacity: 0.69;
+  margin: -1rem -2rem;
+  box-shadow: 0 0 8px #948cff;
+}
+
 #result {
+  font-weight: bold;
+}
+
+#camcoin-balance {
+  color: rgb(255, 255, 255);
+  text-shadow: #3b6bf0 0px 0px 3px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
 }
 
@@ -57,7 +72,7 @@ main {
   margin-top: 50px;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  background: linear-gradient(45deg, #1522d9, #3073e5);
+  background: linear-gradient(45deg, #c70c0c, #e26a08);
   border: none;
   border-radius: 20px;
   color: white;
@@ -80,8 +95,8 @@ footer {
 }
 
 body > footer {
-  background-color: #222222;
-  opacity: 0.9;
+  background-color: #161616;
+  opacity: 1;
   color: white;
 }
 
@@ -117,14 +132,80 @@ footer {
   overflow-y: auto;
   padding: 1rem;
   z-index: 10;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+footer.sidebar-closed {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+footer.sidebar-open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: all;
 }
 
 header, main {
+  margin-right: 0;
+  transition: margin-right 0.3s ease;
+}
+
+header.sidebar-open-margin, main.sidebar-open-margin {
   margin-right: 30%;
 }
 
-#encyclopedia {
-  width: 100%;
+#encyclopedia-toggle {
+  position: fixed;
+  top: 12px;
+  left: calc((100% - var(--sidebar-offset, 0%)) / 2);
+  transform: translateX(-50%);
+  z-index: 20;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  text-shadow: #ffef0c 0px 0px 3px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  background: linear-gradient(45deg, #8C8C8C, #40D6DB, #C300FF, #EDC600, #E30B0B, #ff69b4);
+  background-size: cover;
+  padding: 5px 14px;
+  transition: 0.2s ease, left 0.3s ease;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+#encyclopedia-toggle:hover {
+  opacity: 0.75;
+}
+
+#encyclopedia-toggle:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+
+#encyclopedia-toggle-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #encyclopedia-toggle-mobile {
+    display: block;
+    width: 100%;
+    padding: 5px 12px;
+    margin: 0 0 4px 0;
+    background: rgba(80, 80, 80, 0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+  }
 }
 
 #roll-area {
@@ -142,9 +223,8 @@ header, main {
 
 #play-area {
   background-image: url('background3.gif');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
+  background-position: 0% 0%;
   min-height: 100vh;
 }
 
@@ -214,8 +294,9 @@ header, main {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 73%;
+  width: calc(100% - 4% - var(--sidebar-width, 0px));
   justify-content: space-between;
+  transition: width 0.3s ease;
 }
 
 .version-group {
@@ -285,6 +366,7 @@ header, main {
   cursor: pointer;
   color: white;
   font-size: 10px;
+  transition: bottom 0.3s ease;
 }
 
 #bg-toggle {
@@ -299,6 +381,7 @@ header, main {
   cursor: pointer;
   color: white;
   font-size: 10px;
+  transition: bottom 0.3s ease;
 }
 
 .no-background {
@@ -308,7 +391,7 @@ header, main {
 
 #info-button {
   position: fixed;
-  right: 27%;
+  right: calc(var(--sidebar-width, 0px) + 60px);
   bottom: 20px;
   background: transparent;
   border: none;
@@ -318,6 +401,7 @@ header, main {
   cursor: pointer;
   color: white;
   font-size: 16px;
+  transition: right 0.3s ease, bottom 0.3s ease;
 }
 
 #afk-button {
@@ -332,7 +416,7 @@ header, main {
 
 .popup {
   position: fixed;
-  left: 50%;
+  left: calc((100% - var(--sidebar-offset, 0%)) / 2);
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: #222222;
@@ -342,6 +426,7 @@ header, main {
   color: white;
   max-width: 400px;
   opacity: 0.9;
+  transition: left 0.3s ease;
 }
 
 .popup-content {
@@ -373,10 +458,11 @@ header, main {
 #mindsets-popup {
   position: fixed;
   top: 50%;
-  left: calc((100% - 25%) / 2);
+  left: calc((100% - var(--sidebar-offset, 0%)) / 2);
   transform: translate(-50%, -50%);
   z-index: 10000;
   max-width: 400px;
+  transition: left 0.3s ease;
 }
 
 .mindset-button,
@@ -462,17 +548,64 @@ header, main {
     right: 0;
     left: 0;
     width: 100%;
-    height: auto;
-    max-height: 40vh;
+    height: 45vh;
     z-index: 100;
-    padding: 0.5rem;
+    padding: 0.4rem 0.5rem 0.5rem;
     box-sizing: border-box;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  footer.sidebar-open {
+    transform: translateY(0);
+  }
+
+  footer.sidebar-closed {
+    transform: translateY(100%);
+  }
+
+  #play-area {
+    height: 100vh;
+    transition: height 0.3s ease;
+  }
+
+  #play-area.sidebar-open-mobile {
+    height: 55vh;
+    min-height: unset;
+    overflow: hidden;
+    background-color: #1a1a1a;
   }
 
   header, main {
     margin-right: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
+
+  header.sidebar-open-margin, main.sidebar-open-margin {
+    margin-right: 0;
+  }
+
+  #encyclopedia-toggle {
+    position: fixed;
+    bottom: 12px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.1s ease;
+  }
+
+  #encyclopedia-toggle.toggle-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #encyclopedia-toggle:active {
+    transform: translateX(-50%) scale(0.95);
+  }
+
+
 
   #result-container {
     width: 80%;
@@ -493,11 +626,13 @@ header, main {
 
   #info-button {
     right: 20px;
-    bottom: calc(40vh + 20px);
+    bottom: 20px;
+    transition: bottom 0.3s ease;
   }
 
   #mute-button, #bg-toggle {
-    bottom: calc(40vh + 20px);
+    bottom: 20px;
+    transition: bottom 0.3s ease;
   }
 
   #camdanatan {
@@ -508,6 +643,7 @@ header, main {
   }
 
   .popup {
+    left: 50%;
     width: 90%;
     max-width: none;
     max-height: 80vh;
@@ -540,4 +676,5 @@ header, main {
     max-width: 300px;
     margin: 0 auto;
   }
+
 }

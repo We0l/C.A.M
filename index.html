@@ -10,15 +10,17 @@
   <div id="play-area">
     <div id="camdanatan">
       <div class="version-group">
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><h31>v0.3131</h31></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><h31>v0.3169 (comeback)</h31></a>
         <span class="separator">/</span>
         <a href="https://github.com/We0l/C.A.M" target="_blank" class="github-link">GitHub</a>
       </div>
-      <h3 id="coincounter">🪟 <span id="camcoin-balance">0</span></h3>
+      <h3 id="coincounter"><img src="resources/window-icon.png" class="coin-icon"> <span id="camcoin-balance">0</span></h3>
     </div>
     <header>
       <div id="result-container">
-        <span id="result">C.A.M.</span>
+        <div id="result-container-bg">
+          <span id="result">C.A.M.</span>
+        </div>
       </div>
     </header>
 
@@ -37,17 +39,17 @@
           <div class="mindsets-list">
             <div class="mindset-item">
               <h4>Beta Mindset</h4>
-              <p>Cost: 10 Epic Cams (non‑shiny) + 1000 🪟</p>
+              <p>Cost: 10 Epic Cams (non‑shiny) + 1000 <img src="resources/window-icon.png" class="coin-icon"></p>
               <button class="mindset-button" data-mindset="beta">Purchase</button>
             </div>
             <div class="mindset-item">
               <h4>Alpha Mindset</h4>
-              <p>Cost: 10 Legendary Cams (non‑shiny) + 7000 🪟</p>
+              <p>Cost: 10 Legendary Cams (non‑shiny) + 7000 <img src="resources/window-icon.png" class="coin-icon"></p>
               <button class="mindset-button" data-mindset="alpha">Purchase</button>
             </div>
             <div class="mindset-item">
               <h4>Sigma Mindset</h4>
-              <p>Cost: 10 Mythic Cams (non‑shiny) + 80000 🪟</p>
+              <p>Cost: 10 Mythic Cams (non‑shiny) + 80000 <img src="resources/window-icon.png" class="coin-icon"></p>
               <button class="mindset-button" data-mindset="sigma">Purchase</button>
             </div>
             <div class="mindset-item">
@@ -69,9 +71,12 @@
 
   </div>
 
-  <footer>
-  <details id="encyclopedia">
-      <summary>Camsiklopedia</summary>
+  <button id="encyclopedia-toggle" title="Toggle Camsiklopedia">Camsiklopedia</button>
+
+  <footer id="encyclopedia-sidebar" class="sidebar-closed">
+  <button id="encyclopedia-toggle-mobile" title="Close Camsiklopedia">✕ Close Camsiklopedia</button>
+  <details id="encyclopedia" open>
+      <summary style="display:none">Camsiklopedia</summary>
       <div class="encyclopedia-content">
         <h3 id="rollfont">Total Rolls: <span id="total-rolls">0</span></h3>
         <h3>Cams</h3>
@@ -90,14 +95,15 @@
     </details>
   </footer>
 
-  <section class="cam-lists" hidden>
-    <p id="common_cam">White Cam<br>Black Cam<br>Red Cam<br>Green Cam<br>Blue Cam<br>Purple Cam<br>Yellow Cam<br>Orange Cam<br>Brown Cam<br>Grey Cam<br>Pink Cam<br>Clear Cam<br>Frosted Cam<br>Smoky Cam<br>Matte Cam<br>Sanded Cam<br>Bronze Cam<br>Teal Cam<br>Lime Cam<br>Beige Cam<br>Indigo Cam<br>Olive Cam<br>Navy Cam<br>Amber Cam<br>Coral Cam<br>Cyan Cam<br>Sepia Cam<br>Dull Cam<br>Pale Cam<br>Chalk Cam<br>Sky Cam<br></p>
-    <p id="rare_cam">Icy Cam<br>Reflective Cam<br>Laminated Cam<br>Double Glazed Cam<br>Tempered Cam<br>Wired Cam<br>Crystal Cam<br>E-rank Cam<br>D-rank Cam<br>Cam Gear 2<br>Tinted Cam<br>Prismatic Cam<br>Glacial Cam<br>Anti-Glare Cam<br>Polarized Cam<br>Satin Cam<br>Obsidian Cam<br>Blurred Cam<br>Reinforced Cam<br>Varnished Cam<br>Bubbled Cam<br>Neon Cam<br>Flare Cam<br>Misty Cam<br>Shimmer Cam<br>Soft-Light Cam<br>Static Cam<br>Chrome Cam<br>Carbon Cam<br>Cam Gear 1.5<br></p>      
-    <p id="epic_cam">Enamelled Cam<br>Rainbow Cam<br>Low-E Cam<br>Mirrored Cam<br>Polycarbonate Cam<br>Galactic Cam<br>SSJ Cam<br>Cam Gear 3<br>C-rank Cam</p>
-    <p id="legendary_cam">Suscan<br>Camdancan<br>Edged Cam<br>Ultra Instinct Cam<br>Gold Cam Requiem<br>Cam Over Heaven<br>Cam Gear 4<br>B-rank Cam<br>A-rank Cam<br>S-rank Cam</p>
-    <p id="mythic_cam">Cam Gear 5<br>National Cam<br>The Honered Cam<br>IShowCam</p>
+
+<section class="cam-lists" hidden>
+    <p id="common_cam">White Cam<br>Black Cam<br>Red Cam<br>Green Cam<br>Blue Cam<br>Purple Cam<br>Yellow Cam<br>Orange Cam<br>Brown Cam<br>Grey Cam<br>Pink Cam<br>Clear Cam<br>Frosted Cam<br>Smoky Cam<br>Matte Cam<br>Sanded Cam<br>Bronze Cam<br>Teal Cam<br>Lime Cam<br>Beige Cam<br>Indigo Cam<br>Olive Cam<br>Navy Cam<br>Amber Cam<br>Coral Cam<br>Cyan Cam<br>Sepia Cam<br>Dull Cam<br>Pale Cam<br>Chalk Cam<br>Sky Cam<br>Rusty Cam<br>Sandy Cam<br>Dusty Cam<br>Cloudy Cam<br>Muddy Cam<br>Maroon Cam<br>Ivory Cam<br>Charcoal Cam<br>Lavender Cam<br>Cream Cam<br>Forest Cam<br>Scarlet Cam<br>Magenta Cam<br>Tan Cam<br>Peach Cam<br>Mint Cam<br>Rose Cam<br>Slate Cam<br>Stone Cam<br>Ash Cam<br></p>
+    <p id="rare_cam">Icy Cam<br>Reflective Cam<br>Laminated Cam<br>Double Glazed Cam<br>Tempered Cam<br>Wired Cam<br>Crystal Cam<br>E-rank Cam<br>D-rank Cam<br>Cam Gear 2<br>Tinted Cam<br>Prismatic Cam<br>Glacial Cam<br>Anti-Glare Cam<br>Polarized Cam<br>Satin Cam<br>Obsidian Cam<br>Blurred Cam<br>Reinforced Cam<br>Varnished Cam<br>Bubbled Cam<br>Neon Cam<br>Flare Cam<br>Misty Cam<br>Shimmer Cam<br>Soft-Light Cam<br>Static Cam<br>Chrome Cam<br>Carbon Cam<br>Cam Gear 1.5<br>Cracked Cam<br>Scuffed Cam<br>Mossy Cam<br>Rusted Cam<br>Patched Cam<br>Etched Cam<br>Dented Cam<br>Chipped Cam<br>Weathered Cam<br>Carved Cam<br>Lacquered Cam<br>Painted Cam<br>Coated Cam<br>Woven Cam<br>Ribbed Cam<br>Striped Cam<br>Embossed Cam<br>Gilded Cam<br>Plated Cam<br>Cam Gear 1.75<br></p>
+    <p id="epic_cam">Enamelled Cam<br>Rainbow Cam<br>Low-E Cam<br>Mirrored Cam<br>Polycarbonate Cam<br>Galactic Cam<br>SSJ Cam<br>Cam Gear 3<br>C-rank Cam<br>Holographic Cam<br>Iridescent Cam<br>Opal Cam<br>Spectral Cam<br>Inferno Cam<br>Void-Tinted Cam<br>Shattered Cam<br>Eclipse Cam<br>Cam Gear 3.5<br></p>
+    <p id="legendary_cam">Suscan<br>Camdancan<br>Edged Cam<br>Ultra Instinct Cam<br>Gold Cam Requiem<br>Cam Over Heaven<br>Cam Gear 4<br>B-rank Cam<br>A-rank Cam<br>Ultra Ego Cam<br>S-rank Cam<br>Ascended Cam<br>Royal Cam<br>Prism Cam<br>Sovereign Cam<br>Abyssal Cam<br>Hollow Cam<br>Eternal Cam<br>Cam Gear 4.5<br>Celestine Cam<br>Wraith Cam<br>Phantom Cam<br></p>
+    <p id="mythic_cam">Cam Gear 5<br>National Cam<br>The Honered Cam<br>IShowCam<br>Low Cortisol Cam<br>Cam Gear 5.5<br>Forsaken Cam<br>The Forgotten Cam<br>Primordial Cam<br>Apex Cam<br>Transcendent Cam<br>Boundless Cam<br></p>
     <p id="divine_cam">💨 Osurcam 💨<br>⚫ Void Cam ⚫<br>🪽 Celestial Cam 🪽<br>⚡ Low Tier Cam ⚡</p>
-    <p id="secret_cam">💀 🔥Efenin Cam🗣️ 🙏<br>T̵̪̚h̷̯̿o̵̲͑ś̸̺e̴̺̽ ̵̣̽Ẉ̸̑ȟ̴̜o̵̜̾ ̴̹̅K̷̥̏n̷̞͒o̸̢̾w̸̜͗</p>
+    <p id="secret_cam">💀 🔥Efenin Cam🗣️ 🙏<br>T̵̪̚h̷̯̿o̵̲͑ś̸̺e̴̺̽ ̵̣̽Ẉ̸̑ȟ̴̜o̵̜̾ ̴̹̅K̷̥̏n̷̞͒o̸̢̾w̸̜͗</p>
   </section>
 
   <audio id="glass-break" src="resources/glass-breaks.mp3" preload="auto"></audio>

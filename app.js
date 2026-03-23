@@ -637,4 +637,68 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   resetAntiAfkTimer();
+
+  const encyclopediaToggle = document.getElementById('encyclopedia-toggle');
+  const encyclopediaToggleMobile = document.getElementById('encyclopedia-toggle-mobile');
+  const encyclopediaSidebar = document.getElementById('encyclopedia-sidebar');
+  const headerEl = document.querySelector('header');
+  const mainEl = document.querySelector('main');
+
+  let sidebarOpen = false;
+  const muteBtn = document.getElementById('mute-button');
+  const bgBtn = document.getElementById('bg-toggle');
+  const infoBtn = document.getElementById('info-button');
+
+  function toggleSidebar() {
+    if (!isMuted) buttonClickSound.play();
+    sidebarOpen = !sidebarOpen;
+    const isMobile = window.innerWidth <= 768;
+    if (sidebarOpen) {
+      encyclopediaSidebar.classList.remove('sidebar-closed');
+      encyclopediaSidebar.classList.add('sidebar-open');
+      headerEl.classList.add('sidebar-open-margin');
+      mainEl.classList.add('sidebar-open-margin');
+      playArea.classList.add('sidebar-open-mobile');      document.documentElement.style.setProperty('--sidebar-width', '20vw');
+      document.documentElement.style.setProperty('--sidebar-offset', '30%');
+    if (isMobile) {
+        encyclopediaToggle.classList.add('toggle-hidden');
+        document.documentElement.style.setProperty('--mobile-btn-bottom', '46vh');
+        muteBtn.style.bottom = '46vh';
+        bgBtn.style.bottom = '46vh';
+        infoBtn.style.bottom = '46vh';
+      }
+    } else {
+      encyclopediaSidebar.classList.remove('sidebar-open');
+      encyclopediaSidebar.classList.add('sidebar-closed');
+      headerEl.classList.remove('sidebar-open-margin');
+      mainEl.classList.remove('sidebar-open-margin');
+      playArea.classList.remove('sidebar-open-mobile');
+      document.documentElement.style.setProperty('--sidebar-width', '0px');
+      document.documentElement.style.setProperty('--sidebar-offset', '0%');
+      encyclopediaToggle.classList.remove('toggle-hidden');
+      document.documentElement.style.setProperty('--mobile-btn-bottom', '20px');
+      muteBtn.style.bottom = '20px';
+      bgBtn.style.bottom = '20px';
+      infoBtn.style.bottom = '20px';
+    }
+  }
+
+  encyclopediaToggle.addEventListener('click', toggleSidebar);
+  encyclopediaToggleMobile.addEventListener('click', toggleSidebar);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      muteBtn.style.bottom = '';
+      bgBtn.style.bottom = '';
+      infoBtn.style.bottom = '';
+      encyclopediaToggle.classList.remove('toggle-hidden');
+    } else {
+      if (sidebarOpen) {
+        muteBtn.style.bottom = '46vh';
+        bgBtn.style.bottom = '46vh';
+        infoBtn.style.bottom = '46vh';
+        encyclopediaToggle.classList.add('toggle-hidden');
+      }
+    }
+  });
 });
